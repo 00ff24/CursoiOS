@@ -37,12 +37,11 @@ struct MainIMCView: View {
                     }
                     .toolbarBackground(.backgroundApp, for: .navigationBar)
                     .toolbarBackground(.visible, for: .navigationBar)
-                    //.navigationTitle("IMC CALCULATOR") 
+                    //.navigationTitle("IMC CALCULATOR")
                     // esta linea es para el toolbar,
                     // se tiene que colocar junto con la linea de arriba que pone init()
     }
 }
-
 
 struct ToggleButton:View {
     //estas variables son los parametros que le tengo que pasar cuando hago la llamada
@@ -155,4 +154,3 @@ struct CalculateButton: View {
         }
     }
 }
-

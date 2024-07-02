@@ -12,6 +12,8 @@ struct ResultIMCView: View {
     var body: some View {
         VStack {
             Spacer()
+            Spacer()
+            Spacer()
             Text("YOUR RESULT IS")
                 .font(.largeTitle)
                 .bold()
@@ -23,7 +25,9 @@ struct ResultIMCView: View {
             ResultInformation(result: result, userGender: userGender)
         }
         .frame(maxWidth: .infinity,maxHeight: .infinity)
-        .background(.backgroundApp)
+        .background(.backgroundComponentSelected)
+        .toolbarBackground(Color(.backgroundApp), for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 }
 
@@ -31,8 +35,6 @@ func calculateIMC(weight:Double, height:Double) -> Double {
     let result = weight/((height/100)*(height/100))
     return result
 }
-
-
 
 struct ResultInformation: View {
     let result:Double
