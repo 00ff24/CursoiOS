@@ -14,6 +14,7 @@
 		AD9116152C28B9400065A1BF /* Exercise1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9116142C28B9400065A1BF /* Exercise1.swift */; };
 		AD9116172C28B9430065A1BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD9116162C28B9430065A1BF /* Assets.xcassets */; };
 		AD91161A2C28B9430065A1BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD9116192C28B9430065A1BF /* Preview Assets.xcassets */; };
+		AD9FECB62C3B393000BCB43D /* listExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9FECB52C3B393000BCB43D /* listExample.swift */; };
 		ADE367942C31058F00445C69 /* ResultIMCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE367932C31058F00445C69 /* ResultIMCView.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		AD9116142C28B9400065A1BF /* Exercise1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise1.swift; sourceTree = "<group>"; };
 		AD9116162C28B9430065A1BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD9116192C28B9430065A1BF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AD9FECB52C3B393000BCB43D /* listExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = listExample.swift; path = CursoiOS/IMC/listExample.swift; sourceTree = SOURCE_ROOT; };
 		ADE367932C31058F00445C69 /* ResultIMCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultIMCView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,6 +53,7 @@
 		AD66DB2B2C28CC46000409A1 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AD9FECB52C3B393000BCB43D /* listExample.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				AD66DB2D2C28CC6C000409A1 /* MainView.swift in Sources */,
 				AD9116132C28B9400065A1BF /* CursoiOSApp.swift in Sources */,
 				ADE367942C31058F00445C69 /* ResultIMCView.swift in Sources */,
+				AD9FECB62C3B393000BCB43D /* listExample.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
