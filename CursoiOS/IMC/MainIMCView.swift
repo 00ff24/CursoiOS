@@ -4,13 +4,17 @@ import SwiftUI
 
 struct MainIMCView: View {
     //init() {UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]}
+    @State var age:Int = 25
     @State var gender:Int = 0
     @State var height:Double = 150
-    @State var age:Int = 25
     @State var weight:Int = 60
+    
     var body: some View {
             VStack{
                         HStack {
+                            //togglebutton espera que le pase 4 parametros las 3 variablas + el binding
+                            //3 de los parametros los paso directametne, y el selectedgender le paso la
+                            //con un $gender para que pueda ser modificado por la otra vista.
                             ToggleButton(text: "WOMAN", imageName: "heart.fill", gender: 0, selectedGender: $gender)
                             ToggleButton(text: "MAN", imageName: "star.fill", gender: 1, selectedGender: $gender)
                         }
@@ -21,8 +25,8 @@ struct MainIMCView: View {
                             CounterButton(text: "AGE", number: $age)
                             CounterButton(text: "WEIGHT", number: $weight)
                         }
-                        
-                        CalculateButton(userWeight: Double(weight), userHeight: height)
+                        //añadi el parametro gender, se lo paso directament sin $ porque no lo voy a modificar
+                        CalculateButton(userWeight: Double(weight), userHeight: height, userGender: gender)
                 
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(.backgroundApp)
@@ -33,17 +37,18 @@ struct MainIMCView: View {
                     }
                     .toolbarBackground(.backgroundApp, for: .navigationBar)
                     .toolbarBackground(.visible, for: .navigationBar)
-                    //.navigationTitle("IMC CALCULATOR") // esta linea es para el toolbar, se tiene que colocar junto con la linea de arriba que pone init()
+                    //.navigationTitle("IMC CALCULATOR")
+                    // esta linea es para el toolbar,
+                    // se tiene que colocar junto con la linea de arriba que pone init()
     }
 }
 
-
 struct ToggleButton:View {
-    
+    //estas variables son los parametros que le tengo que pasar cuando hago la llamada
+    //al binding le paso el @state de la vista donde lo voy a pintar
     let text:String
     let imageName:String
     let gender:Int
-    
     @Binding var selectedGender:Int
     
      var body: some View {
@@ -53,7 +58,8 @@ struct ToggleButton:View {
          }
          else{ Color.backgroundComponent }
          
-         Button(action: {selectedGender=gender}){
+         Button(action: { selectedGender=gender })
+         {
              VStack{
                  Image(systemName: imageName).resizable().scaledToFit().frame(height:100).foregroundColor(.white)
                  InformationText(text: text)
@@ -132,10 +138,13 @@ struct CounterButton: View {
 struct CalculateButton: View {
     let userWeight:Double
     let userHeight:Double
+    //Aqui tengo el parametro de genero para enviarselo a la siguiente vista
+    //ResultIMCView
+    let userGender:Int
     
     var body: some View {
         NavigationStack {
-            NavigationLink(destination: ResultIMCView(userWeight: userWeight, userHeight: userHeight)) {
+            NavigationLink(destination: ResultIMCView(userWeight: userWeight, userHeight: userHeight, userGender: userGender)) {
                 Text("Calculate")
                     .font(.title)
                     .bold()
@@ -145,4 +154,3 @@ struct CalculateButton: View {
         }
     }
 }
-
