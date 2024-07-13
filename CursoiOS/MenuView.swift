@@ -1,10 +1,3 @@
-//
-//  MenuView.swift
-//  CursoiOS
-//
-//  Created by Cristian Garcia on 24/6/24.
-//
-
 import SwiftUI
 
 struct MenuView: View {
@@ -12,27 +5,17 @@ struct MenuView: View {
         NavigationStack{
             VStack{
                 NavigationLink(destination: MainIMCView()){
-                    Text("IMC APP").foregroundColor(.white).bold().font(.largeTitle)
+                    Text("IMC").foregroundColor(.white).bold().font(.largeTitle)
+                }.frame(maxWidth: .infinity, maxHeight: .infinity).background(.backgroundApp)
+                
+                NavigationLink(destination: SuperheroSearcher()){
+                    Text("SUPERHERO FINDER").foregroundColor(.white).bold().font(.largeTitle)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity).background(.backgroundApp)
                 
                 NavigationLink(destination: {}){
-                    Text("DRUGSTORE APP").foregroundColor(.white).bold().font(.largeTitle)
-                }.frame(maxWidth: .infinity, maxHeight: .infinity).background(.backgroundApp)
-                
-                NavigationLink(destination: {}){
-                    Text("FARM APP").foregroundColor(.white).bold().font(.largeTitle)
+                    Text("DRUGSTORE").foregroundColor(.white).bold().font(.largeTitle)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity).background(.backgroundApp)
             }.background(.backgroundApp)
         }
     }
 }
-
-#Preview(){
-    MenuView()
-}
-
-//struct MenuView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MenuView()
-//    }
-//} 
