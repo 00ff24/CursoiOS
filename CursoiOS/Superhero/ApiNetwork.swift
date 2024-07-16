@@ -47,6 +47,46 @@ class ApiNetwork{
     struct ImageSuperHero:Codable {
         let url:String
     }
+    
+    func getHeroById(id:String) async throws -> SuperHeroCompleted{
+        let url = URL(string: "https://superheroapi.com/api/585e4e27e1b9708a4201035cf155c8f6/\(id)")!
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let superhero = try JSONDecoder().decode(SuperHeroCompleted.self, from: data)
+        return superhero
+    }
+    
+    struct SuperHeroCompleted:Codable {
+        let id:String
+        let name:String
+        let image:ImageSuperHero
+        let powerstats:Powerstats
+        let biography:Biography
+    }
+    
+    struct Powerstats:Codable {
+        let intelligence:String
+        let strength:String
+        let speed:String
+        let durability:String
+        let power:String
+        let combat:String
+    }
+    
+    struct Biography:Codable {
+        let alignment:String
+        let publisher:String
+        let aliases:[String]
+        let fullName:String
+        
+        enum CodingKeys:String, CodingKey{
+            case fullName = "full-name"
+            case alignment = "alignment"
+            case publisher = "publisher"
+            case aliases = "aliases"
+        }
+        
+    }
+    
 }
 
 
