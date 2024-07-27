@@ -104,9 +104,3 @@ struct listExample: View {
         }
     }
 }
-
-#Preview {
-    listExample()
-}
-
-

@@ -5,6 +5,7 @@ struct SuperheroSearcher: View {
     @State var superheroName:String = ""
     //en vez de usar response para pintar el json que esta decodificando uso un state
     @State var wrapper:ApiNetwork.Wrapper? = nil //con el ? le digo que puede ser nil
+    @State var loading:Bool = false
     var body: some View {
         VStack{
             TextField("",
@@ -23,6 +24,7 @@ struct SuperheroSearcher: View {
                 //No puedo lanzar un proceso asincrono directamente
                 //Ya que no se cuando va a acabar ese proceso, y las lineas
                 //de codigo tienen que continuar, entonces necesito usar un Task
+                loading = true
                 Task{
                     do{
 //                        let response = try await ApiNetwork().getHeroesByQuery(query: superheroName)
@@ -32,14 +34,25 @@ struct SuperheroSearcher: View {
                     }catch{
                         print("error")
                     }
+                    loading = false
                 }
             }
-            List(wrapper?.results ?? []){
-                superhero in //Text(superhero.name)
-                //Aqui puedo cambiar que en lugar de mostrar el nombre llame a una vista
-                //para eso personalizo una vista llamada struct superheroitem
-                SuperHeroItem(superhero: superhero)
-            }.listStyle(.plain)
+            
+            if loading{
+                ProgressView().tint(.white)
+            }
+            
+            NavigationStack{
+                List(wrapper?.results ?? []){
+                    superhero in //Text(superhero.name)
+                    //Aqui puedo cambiar que en lugar de mostrar el nombre llame a una vista
+                    //para eso personalizo una vista llamada struct superheroitem
+                    ZStack{
+                        SuperHeroItem(superhero: superhero)
+                        NavigationLink(destination: {SuperheroDetail(id: superhero.id)}){EmptyView()}.opacity(0)
+                    }.listRowBackground(Color.backgroundApp)
+                }.listStyle(.plain)
+            }
             Spacer()
         }.frame(maxWidth: .infinity,maxHeight: .infinity).background(.backgroundApp)
         
@@ -65,7 +78,7 @@ struct SuperHeroItem: View {
                     .frame(maxWidth: .infinity)
                     .background(.white.opacity(0.5))
             }
-        }.frame(height: 200).cornerRadius(32).listRowBackground(Color.backgroundApp)
+        }.frame(height: 200).cornerRadius(32)
     }
 }
 
